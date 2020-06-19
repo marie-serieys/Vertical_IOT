@@ -13,4 +13,6 @@ name = « chirp stack »
 image =
 type = « DEV1-S »
 state = « stopped »
+enable_ipv6 = true
+
 }
