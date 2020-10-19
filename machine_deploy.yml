@@ -1,0 +1,44 @@
+- hosts: localtest
+  tasks:
+    - name: Install dependencies MQTT, Redis, PostgreSQL
+      apt:
+        pkg: mosquitto
+        state: present
+        update_cache: true
+      apt:
+        pkg: mosquitto-clients
+        state: present
+        update_cache: true
+      apt:
+        pkg: redis-server
+        state: present
+        update_cache: true
+      apt:
+        pkg: redis-tools
+        state: present
+        update_cache: true
+      apt:
+        pkg: postgresql
+        state: present
+        update_cache: true
+
+- name: install python
+  hosts:
+    - localtest
+  become: yes
+  gather_facts: no
+
+#  tasks:
+#    - name: install python-minimal
+ #     raw: apt-get install -y python-minimal
+
+- name: single-server ChirpStack setup
+  hosts:
+    - localtest
+  roles:
+    - base
+    - chirpstack-gateway-bridge
+    - chirpstack-network-server
+    - chirpstack-geolocation-server
+    - chirpstack-application-server
+  become: yes
