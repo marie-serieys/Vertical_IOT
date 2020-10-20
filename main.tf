@@ -15,7 +15,7 @@ resource "scaleway_instance_volume" "data" {
 
 resource "scaleway_instance_server" "my-ubuntu-instance" {
   type  = "DEV1-S"
-  image = "ubuntu-focal"
+  image = "scaleway_IOT"
 
   tags = [ "FocalFossa", "MyUbuntuInstance" ]
 
