@@ -4,13 +4,11 @@
     "access_key": "",                                                              
     "secret_key": "",                                                           
   },
+{
   "builders": [
     {
-      "project_id": "{{ user `project_id` }}",                        
-      "access_key": "{{ user `access_key` }}",                                     
-      "secret_key": "{{ user `secret_key` }}",
       "server_name": "apache",
-      "image_name": "ubuntu-apache",
+      "image_name": "scaleway_IOT",
       "snapshot_name": "ubuntu-apache-snapshot",
       "type": "scaleway",
       "image": "<BASE_IMAGE_ID>",
