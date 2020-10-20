@@ -1,16 +1,26 @@
 provider "scaleway" {
-  region     = "par1"
-  access_key = "${var.secret_access_key}"
-  secret_key = "${var.secret_key}"
-}
-data "scaleway_image" "chirpstack" {
-  name = "Ubuntu 20.04 Focal Fossa"
+  access_key      = "<SCALEWAY-ACCESS-KEY>"
+  secret_key      = "<SCALEWAY-SECRET-KEY>"
+  organization_id = "<SCALEWAY-ORGANIZATION-ID>"
+  zone            = "fr-par-1"
+  region          = "fr-par"
 }
 
-ressource "scaleway_server" "chirpstack" {
-  name        = "chirpstack"
-  type        = "DEV1-S"
-  state       = "stopped"
-  enable_ipv6 = true
+resource "scaleway_instance_ip" "public_ip" {}
+
+resource "scaleway_instance_volume" "data" {
+  size_in_gb = 550
+  type = "l_ssd"
+}
+
+resource "scaleway_instance_server" "my-ubuntu-instance" {
+  type  = "DEV1-S"
+  image = "ubuntu-focal"
+
+  tags = [ "FocalFossa", "MyUbuntuInstance" ]
+
+  ip_id = scaleway_instance_ip.public_ip.id
+
+  additional_volume_ids = [ scaleway_instance_volume.data.id ]
 
 }
