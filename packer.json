@@ -4,7 +4,7 @@
     "access_key": "",                                                              
     "secret_key": "",                                                           
   },
-{
+
   "builders": [
     {
       "server_name": "apache",
