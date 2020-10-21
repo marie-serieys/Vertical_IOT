@@ -1,7 +1,11 @@
+variable "SCALEWAY-ACCESS-KEY"{}
+variable "SCALEWAY-SECRET-KEY" {}
+variable "SCALEWAY-ORGANIZATION-ID"{}
+
 provider "scaleway" {
-  access_key      = "<SCALEWAY-ACCESS-KEY>"
-  secret_key      = "<SCALEWAY-SECRET-KEY>"
-  organization_id = "<SCALEWAY-ORGANIZATION-ID>"
+  access_key      = var.SCALEWAY-ACCESS-KEY
+  secret_key      = var.SCALEWAY-SECRET-KEY
+  organization_id = var.SCALEWAY-ORGANIZATION-ID
   zone            = "fr-par-1"
   region          = "fr-par"
 }
