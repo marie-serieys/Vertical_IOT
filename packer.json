@@ -1,30 +1,25 @@
 {
-  "variables": {                                                                
-    "project_id": "",                                                      
-    "access_key": "",                                                              
-    "secret_key": "",                                                           
-  },
-
   "builders": [
     {
-      "project_id": "{{ user `project_id` }}",                        
-      "access_key": "{{ user `access_key` }}",                                     
-      "secret_key": "{{ user `secret_key` }}",      
-      "server_name": "apache",
+      "server_name": "machine_ubuntu_IOT",
       "image_name": "scaleway_IOT",
-      "snapshot_name": "ubuntu-apache-snapshot",
+      "snapshot_name": "ubuntu-scaleway-IOT-snapshot",
       "type": "scaleway",
-      "image": "<BASE_IMAGE_ID>",
+      "image": "365a8b9c-0c6e-4875-a887-dc3213db9e20",
       "zone": "fr-par-1",
       "commercial_type": "DEV1-S",
-      "ssh_private_key_file": "/Users/myaccount/.ssh/id_rsa",
+      "ssh_private_key_file": "~/.ssh/id_rsa",
       "ssh_username": "root"
     }
   ],
   "provisioners": [
-   {   
+   {
      "type": "shell",
-     "inline": ["sync"]   
-   }   
+     "inline": [
+         "sleep 30",
+         "apt-get update",
+         "apt-get -y upgrade"
+     ]
+   }
  ]
 }
