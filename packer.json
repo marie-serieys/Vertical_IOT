@@ -22,7 +22,7 @@
      ]
    },
    {
-     "type": "shell",
+     "type": "ansible",
      "playbook_file": "/root/OhMyGrappe/Ansible/machine_deploy.yml" 
    } 
  ]
