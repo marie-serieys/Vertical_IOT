@@ -20,6 +20,10 @@
          "apt-get update",
          "apt-get -y upgrade"
      ]
-   }
+   },
+   {
+     "type": "shell",
+     "playbook_file": "/root/OhMyGrappe/Ansible/machine_deploy.yml" 
+   } 
  ]
 }
