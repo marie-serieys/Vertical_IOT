@@ -1,16 +1,15 @@
-variable "SCALEWAY-ACCESS-KEY"{}
-variable "SCALEWAY-SECRET-KEY" {}
-variable "SCALEWAY-ORGANIZATION-ID"{}
+variable "SCW_ACCESS_KEY" {}
+variable "SCW_SECRET_KEY" {}
+variable "SCW_ORGANIZATION_ID" {}
+variable "image_id" {}
 
 provider "scaleway" {
-  access_key      = var.SCALEWAY-ACCESS-KEY
-  secret_key      = var.SCALEWAY-SECRET-KEY
-  organization_id = var.SCALEWAY-ORGANIZATION-ID
+  access_key      = "${var.SCW_ACCESS_KEY}"
+  secret_key      = "${var.SCW_SECRET_KEY}"
+  organization_id = "${var.SCW_ORGANIZATION_ID}"
   zone            = "fr-par-1"
   region          = "fr-par"
 }
-
-resource "scaleway_instance_ip" "public_ip" {}
 
 resource "scaleway_instance_volume" "data" {
   size_in_gb = 550
@@ -19,12 +18,10 @@ resource "scaleway_instance_volume" "data" {
 
 resource "scaleway_instance_server" "my-ubuntu-instance" {
   type  = "DEV1-S"
-  image = "scaleway_IOT"
+  image = "${var.image_id}"
+  enable_dynamic_ip = "true"
+  enable_ipv6 = "true"
 
   tags = [ "FocalFossa", "MyUbuntuInstance" ]
-
-  ip_id = scaleway_instance_ip.public_ip.id
-
-  additional_volume_ids = [ scaleway_instance_volume.data.id ]
 
 }
