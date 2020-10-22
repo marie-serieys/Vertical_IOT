@@ -1,4 +1,2 @@
 [localtest]
 host1.example.org ansible_host=51.15.234.58 ansible_user=root
-
-# Il s'agit d'une instance Scaleway
